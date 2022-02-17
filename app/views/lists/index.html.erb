@@ -1,11 +1,17 @@
   <br>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80);">
+  <div class="container">
+    <h1> <strong>List of lists</strong> </h1>
+  </div>
+</div>
 <div class="container">
-<p class="h1">List of lists</p>
 
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list_path(list.id) %></li>
-  <% end %>
-</ul>
-<%= link_to "new list", new_list_path, class: "btn btn-primary mt-3" %>
+      <% @lists.each do |list| %>
+        <div class="card">
+          <%= link_to list.name, list_path(list.id) %>
+        </div>
+      <% end %>
+
+
+  <%= link_to "new list", new_list_path, class: "btn btn-primary mt-3" %>
 </div>

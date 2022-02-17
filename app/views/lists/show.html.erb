@@ -9,6 +9,10 @@
 <ul class="list-group">
   <% @list.bookmarks.each do |bookmark| %>
     <li class="list-group-item"><%= bookmark.comment %> <%= bookmark.movie.title %></li>
+    <%= link_to "Delete",
+            list_bookmark_path(@list, bookmark),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
   <% end %>
 </ul>
 </div>
