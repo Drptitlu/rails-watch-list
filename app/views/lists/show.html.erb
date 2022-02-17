@@ -1,23 +1,34 @@
 <br>
-
-<div class= "container">
-<p class="h1"><%= @list.name %></p>
-<p><strong>Name:</strong> <%= @list.name %></p>
-
-<div class="container">
-<p class="h2">Bookmarks</p>
-<ul class="list-group">
-  <% @list.bookmarks.each do |bookmark| %>
-    <li class="list-group-item"><%= bookmark.comment %> <%= bookmark.movie.title %></li>
-    <%= link_to "Delete",
-            list_bookmark_path(@list, bookmark),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-  <% end %>
-</ul>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80);">
+  <div class="container">
+    <h1> <strong><%= @list.name %></strong> </h1>
+  </div>
 </div>
+<div class= "container d-flex justify-content-between">
+  <p class="h2">Bookmarks</p>
+  <%= link_to 'Add a movie', new_list_bookmark_path(@list), class: "btn btn-primary mt-1 mb-1" %>
 </div>
-<div class="container">
-<%= link_to "index", lists_path, class: "btn btn-primary mt-3"%>
-<%= link_to 'Leave a bookmark', new_list_bookmark_path(@list), class: "btn btn-primary mt-3" %>
+
+<div class="container d-flex">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="card mr-2" style="width: 34vh;">
+       <img class="card-img-top" src=<%= bookmark.movie.poster_url %> alt="Card image cap">
+        <div class="card-body d-flex flex-column">
+        <div class="text-center font-weight-bold">
+           <h6><%= bookmark.movie.title %></h6> <br>
+          </div>
+             <div class="d-flex">
+                <p><strong>Rating: </strong></p>&nbsp<%= "⭐" * bookmark.movie.rating %>
+              </div>
+                <p class="card-text"><%= bookmark.movie.overview %></p>
+                  <div class="mt-auto d-flex justify-content-between">
+                     <%= bookmark.comment%>
+                       <%= link_to "Delete",
+                        list_bookmark_path(@list, bookmark),class:"mt-auto align-self-endcard-link",
+                           method: :delete,
+                            data: { confirm: "Are you sure?" } %>
+                   </div>
+           </div>
+      </div>
+    <% end %>
 </div>
